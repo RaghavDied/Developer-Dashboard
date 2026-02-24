@@ -6,32 +6,38 @@
     <title>Raghav | Developer Dashboard</title>
     <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dark">
 
+<body class="dark">
+    <div id="particles-js"></div>
     <div class="background-glow"></div>
 
     <header class="navbar">
-        <h1 class="logo">Raghav<span class="accent">.dev</span></h1>
+        <h1 class="typing-header">
+  <span id="typingText"></span>
+  <span class="cursor">|</span>
+</h1>
         <button id="themeToggle" class="toggle-btn">Toggle Theme</button>
     </header>
 
     <main class="dashboard">
 
         <!-- GitHub Card -->
-        <section class="card github-card">
+        <section class="card github-card reveal">
             <h2>GitHub Overview</h2>
             <div id="githubProfile"></div>
             <div id="githubRepos"></div>
         </section>
 
         <!-- LeetCode Card -->
-        <section class="card leetcode-card">
+        <section class="card leetcode-card reveal">
             <h2>LeetCode Stats</h2>
-            <div id="leetcodeStats"></div>
+            <div class="leetcode-container">
+            <img src="https://leetcard.jacoblin.cool/Raghav190406?theme=dark&font=Fira%20Code&ext=heatmap" alt="LeetCode Stats"/>
+            </div>
         </section>
 
         <!-- Goals Tracker -->
-        <section class="card goals-card">
+        <section class="card goals-card reveal">
             <h2>Goals Tracker</h2>
             <div id="goalInputSection">
                 <input type="text" id="goalInput" placeholder="Add new goal..." />
@@ -41,14 +47,14 @@
         </section>
 
         <!-- Quote Generator -->
-        <section class="card quote-card">
+        <section class="card quote-card reveal">
             <h2>Daily Quote</h2>
             <p id="quoteText">Loading quote...</p>
         </section>
         <section class="card weather-card">
     <h2>Weather</h2>
 
-    <div class="weather-input">
+    <div class="weather-input reveal">
         <input type="text" id="cityInput" placeholder="Enter city name..." />
         <button id="searchWeather">Search</button>
     </div>
@@ -86,7 +92,7 @@
         </section> -->
 
     </main>
-
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

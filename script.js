@@ -268,3 +268,103 @@ searchWeather.addEventListener("click", () => {
         getWeather(city);
     }
 });
+
+
+// ===============================
+// Typing Animation
+// ===============================
+
+const typingText = document.getElementById("typingText");
+
+const phrases = [
+    "Hi, I'm Raghav.",
+    "Web Developer.",
+    "Building Clean & Interactive Web Experiences.",
+    "Welcome to My Dashboard."
+];
+
+let phraseIndex = 0;
+let letterIndex = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (!isDeleting) {
+        typingText.innerText = currentPhrase.substring(0, letterIndex + 1);
+        letterIndex++;
+
+        if (letterIndex === currentPhrase.length) {
+            setTimeout(() => isDeleting = true, 1200);
+        }
+    } else {
+        typingText.innerText = currentPhrase.substring(0, letterIndex - 1);
+        letterIndex--;
+
+        if (letterIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+    }
+
+    setTimeout(typeEffect, isDeleting ? 50 : 80);
+}
+
+typeEffect();
+
+
+// ===============================
+// Particle Background
+// ===============================
+
+tsParticles.load("particles-js", {
+    background: {
+        color: {
+            value: "#0f172a"
+        }
+    },
+    particles: {
+        number: {
+            value: 40
+        },
+        color: {
+            value: "#00f5ff"
+        },
+        links: {
+            enable: true,
+            color: "#0077ff",
+            distance: 150,
+            opacity: .5
+        },
+        move: {
+            enable: true,
+            speed: 1.5
+        },
+        opacity: {
+            value: 0.4
+        },
+        size: {
+            value: 2
+        }
+    }
+});
+
+// ===============================
+// Scroll Reveal Animation
+// ===============================
+
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+        }
+    });
+}, {
+    threshold: 0.15
+});
+
+reveals.forEach(section => {
+    observer.observe(section);
+});
