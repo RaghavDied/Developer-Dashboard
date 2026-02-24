@@ -9,7 +9,6 @@ The Developer Dashboard is built as a modular, extensible web application that i
 It is not simply a UI showcase — it reflects structured JavaScript architecture, thoughtful UI layering, and real-world debugging decisions.
 
 ## Live Demo
-
 https://raghavdied.github.io/Developer-Dashboard/
 
 ## Core Features
