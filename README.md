@@ -8,6 +8,10 @@ This project demonstrates practical frontend engineering through API integration
 The Developer Dashboard is built as a modular, extensible web application that integrates developer-centric tools within a visually polished interface.
 It is not simply a UI showcase — it reflects structured JavaScript architecture, thoughtful UI layering, and real-world debugging decisions.
 
+## Live Demo
+
+https://raghavdied.github.io/Developer-Dashboard/
+
 ## Core Features
 
 ### GitHub Integration
