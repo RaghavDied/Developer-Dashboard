@@ -1,0 +1,80 @@
+:root {
+    --bg-dark: #0f172a;
+    --card-dark: rgba(255, 255, 255, 0.06);
+    --accent: #6366f1;
+    --text-light: #e2e8f0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+.background-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #6366f140, transparent 70%);
+    top: -200px;
+    right: -200px;
+    z-index: -1;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.toggle-btn {
+    background: var(--accent);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+.card {
+    background: var(--card-dark);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px #6366f150;
+}
+
+input {
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    margin-right: 5px;
+}
+
+button {
+    cursor: pointer;
+}
