@@ -72,3 +72,68 @@ function displayGitHubRepos(repos) {
 }
 
 fetchGitHubData();
+
+
+// ===============================
+// Goals Tracker
+// ===============================
+
+const goalInput = document.getElementById("goalInput");
+const addGoalBtn = document.getElementById("addGoalBtn");
+const goalList = document.getElementById("goalList");
+
+let goals = JSON.parse(localStorage.getItem("goals")) || [];
+
+function saveGoals() {
+    localStorage.setItem("goals", JSON.stringify(goals));
+}
+
+function renderGoals() {
+    goalList.innerHTML = "";
+
+    goals.forEach((goal, index) => {
+        const li = document.createElement("li");
+        li.classList.add("goal-item");
+
+        if (goal.completed) {
+            li.classList.add("completed");
+        }
+
+        li.innerHTML = `
+            <span>${goal.text}</span>
+            <div>
+                <button class="complete-btn">✔</button>
+                <button class="delete-btn">✖</button>
+            </div>
+        `;
+
+        // Complete toggle
+        li.querySelector(".complete-btn").addEventListener("click", () => {
+            goals[index].completed = !goals[index].completed;
+            saveGoals();
+            renderGoals();
+        });
+
+        // Delete goal
+        li.querySelector(".delete-btn").addEventListener("click", () => {
+            goals.splice(index, 1);
+            saveGoals();
+            renderGoals();
+        });
+
+        goalList.appendChild(li);
+    });
+}
+
+addGoalBtn.addEventListener("click", () => {
+    const text = goalInput.value.trim();
+    if (text === "") return;
+
+    goals.push({ text, completed: false });
+    goalInput.value = "";
+    saveGoals();
+    renderGoals();
+});
+
+renderGoals();
+
