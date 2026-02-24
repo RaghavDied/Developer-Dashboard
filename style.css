@@ -78,3 +78,17 @@ input {
 button {
     cursor: pointer;
 }
+
+body.light {
+    --bg-dark: #f1f5f9;
+    --card-dark: rgba(255, 255, 255, 0.7);
+    --text-light: #0f172a;
+}
+
+body {
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+.card {
+    transition: all 0.4s ease;
+}
