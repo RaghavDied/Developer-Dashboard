@@ -15,6 +15,11 @@ themeToggle.addEventListener("click", () => {
     } else {
         localStorage.setItem("theme", "dark");
     }
+    if (body.classList.contains("light")) {
+    loadParticles("light");
+} else {
+    loadParticles("dark");
+}
 });
 
 // ===============================
@@ -316,39 +321,34 @@ typeEffect();
 // ===============================
 // Particle Background
 // ===============================
-
-tsParticles.load("particles-js", {
-    background: {
-        color: {
-            value: "#0f172a"
+function loadParticles(theme = "dark") {
+    tsParticles.load("particles-js", {
+        particles: {
+            number: { value: 40 },
+            color: {
+                value: theme === "dark" ? "#00f5ff" : "#2563eb"
+            },
+            links: {
+                enable: true,
+                color: theme === "dark" ? "#0077ff" : "#2563eb",
+                distance: 150,
+                opacity: 0.3
+            },
+            move: {
+                enable: true,
+                speed: 1.2
+            },
+            opacity: {
+                value: 0.3
+            },
+            size: {
+                value: 2
+            }
         }
-    },
-    particles: {
-        number: {
-            value: 40
-        },
-        color: {
-            value: "#00f5ff"
-        },
-        links: {
-            enable: true,
-            color: "#0077ff",
-            distance: 150,
-            opacity: .5
-        },
-        move: {
-            enable: true,
-            speed: 1.5
-        },
-        opacity: {
-            value: 0.4
-        },
-        size: {
-            value: 2
-        }
-    }
-});
+    });
+}
 
+loadParticles(body.classList.contains("light") ? "light" : "dark");
 // ===============================
 // Scroll Reveal Animation
 // ===============================
