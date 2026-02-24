@@ -305,7 +305,6 @@ body {
     left: 0;
 }
 
-
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -448,3 +447,4 @@ body {
         transform: translateY(0);
     }
 }
+
