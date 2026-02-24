@@ -178,9 +178,9 @@ fetchQuote();
 
 // ===============================
 // Weather Widget
-// ===============================
 
 const apiKey = "834070fbe6719ef6840e685e76644473";
+
 const cityInput = document.getElementById("cityInput");
 const searchWeather = document.getElementById("searchWeather");
 
@@ -190,9 +190,16 @@ const weatherTemp = document.getElementById("weatherTemp");
 const weatherDesc = document.getElementById("weatherDesc");
 const weatherHumidity = document.getElementById("weatherHumidity");
 const weatherWind = document.getElementById("weatherWind");
+const weatherIcon = document.getElementById("weatherIcon");
+const weatherLoading = document.getElementById("weatherLoading");
 
 async function getWeather(city) {
     try {
+        // Reset state
+        weatherResult.classList.add("hidden");
+        weatherResult.classList.remove("show");
+        weatherLoading.classList.remove("hidden");
+
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
         );
@@ -203,23 +210,57 @@ async function getWeather(city) {
 
         const data = await response.json();
 
+        // Populate UI
         weatherCity.innerText = `${data.name}, ${data.sys.country}`;
-        weatherTemp.innerText = `Temperature: ${data.main.temp}°C`;
+        weatherTemp.innerText = `${Math.round(data.main.temp)}°C`;
         weatherDesc.innerText = `Condition: ${data.weather[0].description}`;
         weatherHumidity.innerText = `Humidity: ${data.main.humidity}%`;
         weatherWind.innerText = `Wind Speed: ${data.wind.speed} m/s`;
 
+        // Weather Icon
+        const iconCode = data.weather[0].icon;
+        weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        weatherIcon.alt = data.weather[0].description;
+
+        // Show result with animation
+        weatherLoading.classList.add("hidden");
         weatherResult.classList.remove("hidden");
 
+        setTimeout(() => {
+            weatherResult.classList.add("show");
+        }, 50);
+
     } catch (error) {
+        weatherLoading.classList.add("hidden");
         weatherResult.classList.remove("hidden");
+        weatherResult.classList.add("show");
+
         weatherCity.innerText = "";
         weatherTemp.innerText = "";
         weatherDesc.innerText = "City not found. Please try again.";
         weatherHumidity.innerText = "";
         weatherWind.innerText = "";
+        weatherIcon.src = "";
     }
 }
+
+// Button click
+searchWeather.addEventListener("click", () => {
+    const city = cityInput.value.trim();
+    if (city) {
+        getWeather(city);
+    }
+});
+
+// Allow Enter key
+cityInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        const city = cityInput.value.trim();
+        if (city) {
+            getWeather(city);
+        }
+    }
+});
 
 searchWeather.addEventListener("click", () => {
     const city = cityInput.value.trim();

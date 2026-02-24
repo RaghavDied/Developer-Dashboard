@@ -53,13 +53,28 @@
         <button id="searchWeather">Search</button>
     </div>
 
-    <div id="weatherResult" class="weather-result hidden">
+    <p id="weatherLoading" class="hidden">Fetching weather data...</p>
+    <!-- <div id="weatherResult" class="weather-result hidden">
         <h3 id="weatherCity"></h3>
         <p id="weatherTemp"></p>
         <p id="weatherDesc"></p>
         <p id="weatherHumidity"></p>
         <p id="weatherWind"></p>
+    </div> -->
+    <div id="weatherResult" class="weather-result hidden">
+    <div class="weather-top">
+        <h3 id="weatherCity"></h3>
+        <img id="weatherIcon" />
     </div>
+
+    <div class="weather-temp" id="weatherTemp"></div>
+
+    <div class="weather-details">
+        <p id="weatherDesc"></p>
+        <p id="weatherHumidity"></p>
+        <p id="weatherWind"></p>
+    </div>
+</div>
 </section>
 
         <!-- Weather Widget
