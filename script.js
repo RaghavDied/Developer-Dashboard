@@ -137,3 +137,93 @@ addGoalBtn.addEventListener("click", () => {
 
 renderGoals();
 
+
+// ===============================
+// Quote Generator (Stable Version)
+// ===============================
+
+const quoteText = document.getElementById("quoteText");
+const newQuoteBtn = document.getElementById("newQuoteBtn");
+
+const quotes = [
+    { text: "Code is like humor. When you have to explain it, it’s bad.", author: "Cory House" },
+    { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+    { text: "Experience is the name everyone gives to their mistakes.", author: "Oscar Wilde" },
+    { text: "In order to be irreplaceable, one must always be different.", author: "Coco Chanel" },
+    { text: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
+    { text: "Make it work, make it right, make it fast.", author: "Kent Beck" },
+    { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+    { text: "Programs must be written for people to read.", author: "Harold Abelson" }
+];
+
+function fetchQuote() {
+    quoteText.style.opacity = 0;
+
+    setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex];
+
+        quoteText.innerText = `"${randomQuote.text}" — ${randomQuote.author}`;
+        quoteText.style.opacity = 1;
+    }, 300);
+}
+
+if (newQuoteBtn) {
+    newQuoteBtn.addEventListener("click", fetchQuote);
+}
+
+fetchQuote();
+
+
+
+// ===============================
+// Weather Widget
+// ===============================
+
+const apiKey = "834070fbe6719ef6840e685e76644473";
+const cityInput = document.getElementById("cityInput");
+const searchWeather = document.getElementById("searchWeather");
+
+const weatherResult = document.getElementById("weatherResult");
+const weatherCity = document.getElementById("weatherCity");
+const weatherTemp = document.getElementById("weatherTemp");
+const weatherDesc = document.getElementById("weatherDesc");
+const weatherHumidity = document.getElementById("weatherHumidity");
+const weatherWind = document.getElementById("weatherWind");
+
+async function getWeather(city) {
+    try {
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        );
+
+        if (!response.ok) {
+            throw new Error("City not found");
+        }
+
+        const data = await response.json();
+
+        weatherCity.innerText = `${data.name}, ${data.sys.country}`;
+        weatherTemp.innerText = `Temperature: ${data.main.temp}°C`;
+        weatherDesc.innerText = `Condition: ${data.weather[0].description}`;
+        weatherHumidity.innerText = `Humidity: ${data.main.humidity}%`;
+        weatherWind.innerText = `Wind Speed: ${data.wind.speed} m/s`;
+
+        weatherResult.classList.remove("hidden");
+
+    } catch (error) {
+        weatherResult.classList.remove("hidden");
+        weatherCity.innerText = "";
+        weatherTemp.innerText = "";
+        weatherDesc.innerText = "City not found. Please try again.";
+        weatherHumidity.innerText = "";
+        weatherWind.innerText = "";
+    }
+}
+
+searchWeather.addEventListener("click", () => {
+    const city = cityInput.value.trim();
+    if (city) {
+        getWeather(city);
+    }
+});

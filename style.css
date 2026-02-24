@@ -161,3 +161,55 @@ body {
     background: var(--accent);
     color: white;
 }
+
+
+
+.quote-card p {
+    transition: opacity 0.4s ease;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+
+.weather-input {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.weather-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+}
+
+.weather-input button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #00f5ff, #0077ff);
+    color: white;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.weather-input button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
+}
+
+.weather-result {
+    margin-top: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+

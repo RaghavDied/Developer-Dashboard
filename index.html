@@ -45,14 +45,30 @@
             <h2>Daily Quote</h2>
             <p id="quoteText">Loading quote...</p>
         </section>
+        <section class="card weather-card">
+    <h2>Weather</h2>
 
-        <!-- Weather Widget -->
+    <div class="weather-input">
+        <input type="text" id="cityInput" placeholder="Enter city name..." />
+        <button id="searchWeather">Search</button>
+    </div>
+
+    <div id="weatherResult" class="weather-result hidden">
+        <h3 id="weatherCity"></h3>
+        <p id="weatherTemp"></p>
+        <p id="weatherDesc"></p>
+        <p id="weatherHumidity"></p>
+        <p id="weatherWind"></p>
+    </div>
+</section>
+
+        <!-- Weather Widget
         <section class="card weather-card">
             <h2>Weather</h2>
             <input type="text" id="cityInput" placeholder="Enter city..." />
             <button id="getWeatherBtn">Get Weather</button>
             <div id="weatherResult"></div>
-        </section>
+        </section> -->
 
     </main>
 
