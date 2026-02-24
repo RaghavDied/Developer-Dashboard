@@ -1,7 +1,7 @@
 const themeToggle = document.getElementById("themeToggle");
 const body = document.body;
 
-// Load saved theme
+
 if (localStorage.getItem("theme") === "light") {
     body.classList.remove("dark");
     body.classList.add("light");
@@ -22,9 +22,7 @@ themeToggle.addEventListener("click", () => {
 }
 });
 
-// ===============================
-// GitHub API Integration
-// ===============================
+
 
 const githubUsername = "RaghavDied";
 const githubProfileDiv = document.getElementById("githubProfile");
@@ -79,9 +77,6 @@ function displayGitHubRepos(repos) {
 fetchGitHubData();
 
 
-// ===============================
-// Goals Tracker
-// ===============================
 
 const goalInput = document.getElementById("goalInput");
 const addGoalBtn = document.getElementById("addGoalBtn");
@@ -112,14 +107,14 @@ function renderGoals() {
             </div>
         `;
 
-        // Complete toggle
+
         li.querySelector(".complete-btn").addEventListener("click", () => {
             goals[index].completed = !goals[index].completed;
             saveGoals();
             renderGoals();
         });
 
-        // Delete goal
+
         li.querySelector(".delete-btn").addEventListener("click", () => {
             goals.splice(index, 1);
             saveGoals();
@@ -128,6 +123,19 @@ function renderGoals() {
 
         goalList.appendChild(li);
     });
+
+    const completed = goals.filter(g => g.completed).length;
+const total = goals.length;
+
+const goalCount = document.getElementById("goalCount");
+const progressFill = document.getElementById("progressFill");
+
+if (goalCount && progressFill) {
+    goalCount.innerText = `${completed}/${total} Completed`;
+
+    const percent = total === 0 ? 0 : (completed / total) * 100;
+    progressFill.style.width = percent + "%";
+}
 }
 
 addGoalBtn.addEventListener("click", () => {
@@ -143,9 +151,6 @@ addGoalBtn.addEventListener("click", () => {
 renderGoals();
 
 
-// ===============================
-// Quote Generator (Stable Version)
-// ===============================
 
 const quoteText = document.getElementById("quoteText");
 const newQuoteBtn = document.getElementById("newQuoteBtn");
@@ -181,8 +186,6 @@ fetchQuote();
 
 
 
-// ===============================
-// Weather Widget
 
 const apiKey = "834070fbe6719ef6840e685e76644473";
 
@@ -200,7 +203,7 @@ const weatherLoading = document.getElementById("weatherLoading");
 
 async function getWeather(city) {
     try {
-        // Reset state
+
         weatherResult.classList.add("hidden");
         weatherResult.classList.remove("show");
         weatherLoading.classList.remove("hidden");
@@ -215,19 +218,17 @@ async function getWeather(city) {
 
         const data = await response.json();
 
-        // Populate UI
+
         weatherCity.innerText = `${data.name}, ${data.sys.country}`;
         weatherTemp.innerText = `${Math.round(data.main.temp)}°C`;
         weatherDesc.innerText = `Condition: ${data.weather[0].description}`;
         weatherHumidity.innerText = `Humidity: ${data.main.humidity}%`;
         weatherWind.innerText = `Wind Speed: ${data.wind.speed} m/s`;
 
-        // Weather Icon
         const iconCode = data.weather[0].icon;
         weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
         weatherIcon.alt = data.weather[0].description;
 
-        // Show result with animation
         weatherLoading.classList.add("hidden");
         weatherResult.classList.remove("hidden");
 
@@ -249,7 +250,7 @@ async function getWeather(city) {
     }
 }
 
-// Button click
+
 searchWeather.addEventListener("click", () => {
     const city = cityInput.value.trim();
     if (city) {
@@ -257,7 +258,6 @@ searchWeather.addEventListener("click", () => {
     }
 });
 
-// Allow Enter key
 cityInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         const city = cityInput.value.trim();
@@ -274,10 +274,6 @@ searchWeather.addEventListener("click", () => {
     }
 });
 
-
-// ===============================
-// Typing Animation
-// ===============================
 
 const typingText = document.getElementById("typingText");
 
@@ -317,10 +313,6 @@ function typeEffect() {
 
 typeEffect();
 
-
-// ===============================
-// Particle Background
-// ===============================
 function loadParticles(theme = "dark") {
     tsParticles.load("particles-js", {
         particles: {
@@ -349,9 +341,6 @@ function loadParticles(theme = "dark") {
 }
 
 loadParticles(body.classList.contains("light") ? "light" : "dark");
-// ===============================
-// Scroll Reveal Animation
-// ===============================
 
 const reveals = document.querySelectorAll(".reveal");
 

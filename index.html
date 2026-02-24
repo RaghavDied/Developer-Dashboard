@@ -21,14 +21,12 @@
 
     <main class="dashboard">
 
-        <!-- GitHub Card -->
         <section class="card github-card reveal">
             <h2>GitHub Overview</h2>
             <div id="githubProfile"></div>
             <div id="githubRepos"></div>
         </section>
 
-        <!-- LeetCode Card -->
         <section class="card leetcode-card reveal">
             <h2>LeetCode Stats</h2>
             <div class="leetcode-container">
@@ -36,17 +34,22 @@
             </div>
         </section>
 
-        <!-- Goals Tracker -->
         <section class="card goals-card reveal">
-            <h2>Goals Tracker</h2>
-            <div id="goalInputSection">
+            <div class="goals-header">
+                <h2>Goals Tracker</h2>
+                <div class="goals-progress">
+                    <span id="goalCount">0/0 Completed</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="goalInputSection" class="goal-input-wrapper">
                 <input type="text" id="goalInput" placeholder="Add new goal..." />
                 <button id="addGoalBtn">Add</button>
             </div>
             <ul id="goalList"></ul>
         </section>
-
-        <!-- Quote Generator -->
         <section class="card quote-card reveal">
             <h2>Daily Quote</h2>
             <p id="quoteText">Loading quote...</p>
@@ -60,13 +63,6 @@
     </div>
 
     <p id="weatherLoading" class="hidden">Fetching weather data...</p>
-    <!-- <div id="weatherResult" class="weather-result hidden">
-        <h3 id="weatherCity"></h3>
-        <p id="weatherTemp"></p>
-        <p id="weatherDesc"></p>
-        <p id="weatherHumidity"></p>
-        <p id="weatherWind"></p>
-    </div> -->
     <div id="weatherResult" class="weather-result hidden">
     <div class="weather-top">
         <h3 id="weatherCity"></h3>
@@ -82,14 +78,6 @@
     </div>
 </div>
 </section>
-
-        <!-- Weather Widget
-        <section class="card weather-card">
-            <h2>Weather</h2>
-            <input type="text" id="cityInput" placeholder="Enter city..." />
-            <button id="getWeatherBtn">Get Weather</button>
-            <div id="weatherResult"></div>
-        </section> -->
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
